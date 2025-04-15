@@ -44,9 +44,12 @@ if st.button("Generate Pairplot"):
     st.pyplot(fig)
 
 # Splitting data
-target_column = st.selectbox("Select the target column for prediction", df.columns)
-x = df.drop(target_column, axis=1)
-y = df[target_column]
+if "Kyphosis" not in df.columns:
+    st.error("The dataset must contain a 'Kyphosis' column for prediction.")
+    st.stop()
+
+x = df.drop("Kyphosis", axis=1)
+y = df["Kyphosis"]
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30)
 
 # Decision Tree Classifier
