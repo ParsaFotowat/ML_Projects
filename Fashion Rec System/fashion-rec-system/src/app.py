@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from utils.data_processing import load_data
-from utils.model import get_recommender, load_model
+from utils.model import recommend_items, load_model
 from utils.visualization import plot_figures
 
 # Load the model and data
@@ -14,7 +14,7 @@ st.title("Fashion Recommendation System")
 item_id = st.selectbox("Select an item ID for recommendations:", df['id'].values)
 
 if st.button("Get Recommendations"):
-    idx_rec, idx_sim = get_recommender(item_id, df, top_n=6)
+    idx_rec = recommend_items(df['embedding'].values, item_id, top_n=6)
 
     # Display the selected item with its name
     selected_item = df.loc[df['id'] == item_id]
