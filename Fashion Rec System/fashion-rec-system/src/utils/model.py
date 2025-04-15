@@ -2,6 +2,7 @@ from keras.applications.resnet50 import ResNet50
 from keras.preprocessing import image
 from keras.applications.resnet50 import preprocess_input
 from keras.layers import GlobalMaxPooling2D
+from tensorflow import keras  
 import numpy as np
 import pandas as pd
 
