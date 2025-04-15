@@ -17,7 +17,7 @@ default_dataset = st.sidebar.checkbox("Use default Kyphosis dataset", value=True
 
 if default_dataset:
     # Load the default dataset from the data folder
-    dataset_path = r"C:\Users\admin\Desktop\Apps\Resume and Shit\Portfolio\Projects\ML Apps\ML_Projects\Kyphosis\Data\kyphosis.csv.csv"
+    dataset_path = r"C:\Users\admin\Desktop\Apps\Resume and Shit\Portfolio\Projects\ML Apps\ML_Projects\Kyphosis\Data\kyphosis.csv"
     if not os.path.exists(dataset_path):
         st.error(f"Dataset not found at {dataset_path}. Please check the file path.")
         st.stop()
