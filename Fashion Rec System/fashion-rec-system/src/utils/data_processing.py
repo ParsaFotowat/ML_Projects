@@ -1,13 +1,18 @@
 import pandas as pd
+import numpy as np
 import os
 
-def load_data(file_path):
-    """Load the dataset from a CSV file."""
-    if os.path.exists(file_path):
-        data = pd.read_csv(file_path)
-        return data
-    else:
-        raise FileNotFoundError(f"The file {file_path} does not exist.")
+def load_data(metadata_path, embeddings_path):
+    # Load metadata (e.g., item IDs, names, image paths)
+    metadata = pd.read_csv(metadata_path)
+    
+    # Load embeddings (e.g., precomputed feature vectors)
+    embeddings = np.load(embeddings_path)
+    
+    # Add embeddings as a new column in the metadata DataFrame
+    metadata['embedding'] = list(embeddings)
+    
+    return metadata
 
 def preprocess_data(df):
     """Preprocess the dataset for the model."""

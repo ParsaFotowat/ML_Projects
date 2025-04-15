@@ -6,7 +6,10 @@ from utils.visualization import plot_figures
 
 # Load the model and data
 model = load_model()
-df = load_data()
+df = load_data(
+    metadata_path="c:/path/to/metadata.csv",  # Replace with the actual path to your metadata file
+    embeddings_path="c:/path/to/embeddings.npy"  # Replace with the actual path to your embeddings file
+)
 
 st.title("Fashion Recommendation System")
 
@@ -14,7 +17,11 @@ st.title("Fashion Recommendation System")
 item_id = st.selectbox("Select an item ID for recommendations:", df['id'].values)
 
 if st.button("Get Recommendations"):
-    idx_rec = recommend_items(df['embedding'].values, item_id, top_n=6)
+    # Find the index of the selected item
+    selected_idx = df.index[df['id'] == item_id][0]
+    
+    # Get recommendations
+    idx_rec = recommend_items(np.array(df['embedding'].tolist()), selected_idx, top_n=6)
 
     # Display the selected item with its name
     selected_item = df.loc[df['id'] == item_id]
