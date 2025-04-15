@@ -1,5 +1,9 @@
 streamlit
+tensorflow
+keras
+numpy
 pandas
-seaborn
+opencv-python
 matplotlib
 scikit-learn
+seaborn
